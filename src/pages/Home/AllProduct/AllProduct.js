@@ -1,8 +1,9 @@
 import { Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const AllProduct = ({product}) => {
-    const {name, price, description, img} = product;
+    const {_id, name, price, description, img} = product;
     return (
         <Grid item xs={4} sm={6} md={4}>
             <Card>
@@ -22,7 +23,9 @@ const AllProduct = ({product}) => {
                     <Typography variant="h5" sx={{color: '#D10750', my: 2}}>
                     Price : ${price}
                     </Typography>
-                    <Button style={{backgroundColor:'#D10750', alignItems: 'start'}} variant="contained">Buy Now</Button>
+                    <NavLink to={`/purchase/${_id}`} style={{textDecoration: 'none'}}>
+                        <Button style={{backgroundColor:'#D10750'}} variant="contained">Buy Now</Button>
+                    </NavLink>
                 </CardContent>
             </Card>
         </Grid>
