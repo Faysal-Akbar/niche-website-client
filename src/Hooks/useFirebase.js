@@ -9,6 +9,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
 
     // Register
     const registerUser = (name, email, password, history) => {
@@ -17,12 +18,14 @@ const useFirebase = () => {
         .then((userCredential) => {
             const newUser = {email, displayName: name}
             setUser(newUser);
+            // save user info to the database
+            saveUserInfo(email, name);
+
             updateProfile(auth.currentUser, {
                 displayName: name,
               }).then(() => {
               }).catch((error) => { 
               });
-            setUser(user);
             history.replace('/');
             setError('');
           })
@@ -71,9 +74,32 @@ const useFirebase = () => {
             setIsLoading(false)
         });
         return ()=> unsubscribed;
-    }, [])
+    }, []);
+
+    const saveUserInfo = (email, displayName) => {
+        const user = {email, displayName};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(user),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+        .then(res => res.json())
+        .then(data => setAdmin(data.admin))
+    }, [user.email])
+
     return {
         user,
+        admin,
         registerUser,
         loginUser,
         error,

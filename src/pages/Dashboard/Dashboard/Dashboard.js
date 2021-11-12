@@ -18,14 +18,17 @@ import {
 import { Button } from '@mui/material';
 import Payment from '../Payment/Payment';
 import MyOrders from '../MyOrders/MyOrders';
-import Products from '../../Home/Products/Products';
 import useAuth from '../../../Hooks/useAuth';
 import Review from '../Review/Review';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddProduct from '../AddProduct/AddProduct';
+import ManageProducts from '../ManageProducts/ManageProducts';
+import ManageOrders from '../ManageOrders/ManageOrders';
 
-const drawerWidth = 180;
+const drawerWidth = 190;
 
 function Dashboard(props) {
-  const {logout} = useAuth();
+  const {logout, admin} = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -42,9 +45,18 @@ function Dashboard(props) {
 
       <NavLink style={{textDecoration: 'none', fontWeight: 600}} to="/home"><Button variant="inherit">Home</Button></NavLink>
       <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}`}><Button variant="inherit">Dashboard</Button></NavLink>
-      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/payment`}><Button variant="inherit">Payment</Button></NavLink>
-      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/myOrders`}><Button variant="inherit">My Orders</Button></NavLink>
-      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/review`}><Button variant="inherit">Review</Button></NavLink> <br />
+      {!admin && <Box>
+        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/payment`}><Button variant="inherit">Payment</Button></NavLink>
+        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/myOrders`}><Button variant="inherit">My Orders</Button></NavLink>
+        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/review`}><Button variant="inherit">Review</Button></NavLink> <br />
+        </Box>}
+
+      {admin && <Box>
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/makeAdmin`}><Button variant="inherit">Make Admin</Button></NavLink> <br />
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/addProduct`}><Button variant="inherit">Add Product</Button></NavLink> <br />
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/manageProducts`}><Button variant="inherit">Manage Products</Button></NavLink> <br />
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/manageAllOrders`}><Button variant="inherit">Manage All Orders</Button></NavLink> <br />
+        </Box>}
 
       <Button onClick={logout} style={{backgroundColor: '#D10750'}} variant="contained">Log Out</Button>
        
@@ -117,7 +129,7 @@ function Dashboard(props) {
         <Toolbar />
         <Switch>
         <Route exact path={path}>
-            <Products></Products>
+            <MyOrders></MyOrders>
         </Route>
         <Route path={`${path}/payment`}>
             <Payment></Payment>  
@@ -127,6 +139,18 @@ function Dashboard(props) {
         </Route>
         <Route path={`${path}/review`}>
             <Review></Review>  
+        </Route>
+        <Route path={`${path}/makeAdmin`}>
+            <MakeAdmin></MakeAdmin>  
+        </Route>
+        <Route path={`${path}/addProduct`}>
+            <AddProduct></AddProduct>  
+        </Route>
+        <Route path={`${path}/manageProducts`}>
+            <ManageProducts></ManageProducts>  
+        </Route>
+        <Route path={`${path}/manageAllOrders`}>
+            <ManageOrders></ManageOrders>  
         </Route>
       </Switch>
         

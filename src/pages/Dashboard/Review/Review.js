@@ -60,7 +60,6 @@ const Review = () => {
             <TextField
             sx={{width: "30%"}}
             label="Rating"
-            type="number"
             name="rating"
             onBlur={handleOnBlur}
             variant="standard" 
