@@ -15,7 +15,7 @@ const MyOrders = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(()=> {
-        fetch(`http://localhost:5000/orders/${user.email}`)
+        fetch(`https://enigmatic-shore-70440.herokuapp.com/orders/${user.email}`)
         .then(res => res.json())
         .then(data => setOrders(data))
     }, [user.email]);
@@ -23,7 +23,7 @@ const MyOrders = () => {
     const handleDeleteOrder = (id) => {
         const isDelete = window.confirm("Are You Sure to Delete?");
         if(isDelete){
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://enigmatic-shore-70440.herokuapp.com/orders/${id}`, {
             method: 'DELETE',
             })
             .then(res => res.json())

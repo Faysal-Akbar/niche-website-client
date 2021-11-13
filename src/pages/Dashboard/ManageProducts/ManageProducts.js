@@ -13,7 +13,7 @@ const ManageProducts = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://enigmatic-shore-70440.herokuapp.com/products')
         .then(res => res.json())
         .then(data => setAllProducts(data))
     }, []);
@@ -21,7 +21,7 @@ const ManageProducts = () => {
     const handleDeleteProduct = (id) => {
         const isDelete = window.confirm("Are You Sure to Delete?");
         if(isDelete){
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://enigmatic-shore-70440.herokuapp.com/products/${id}`, {
             method: 'DELETE'
             })
             .then(res => res.json())

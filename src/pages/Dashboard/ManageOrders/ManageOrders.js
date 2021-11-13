@@ -13,13 +13,13 @@ const ManageOrders = () => {
     const [loading, isLoading] = useState(false);
 
     useEffect(()=> {
-        fetch('http://localhost:5000/orders')
+        fetch('https://enigmatic-shore-70440.herokuapp.com/orders')
         .then(res => res.json())
         .then(data => setAllOrders(data))
     }, [loading]);
 
     const handleUpdateStatus = (id) => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://enigmatic-shore-70440.herokuapp.com/orders/${id}`, {
             method: 'PUT',
             headers:{
                 'content-type':'application/json'

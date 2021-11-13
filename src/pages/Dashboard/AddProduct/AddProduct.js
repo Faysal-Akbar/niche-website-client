@@ -19,7 +19,7 @@ const AddProduct = () => {
             ...product
         }
         // send to database
-        fetch('http://localhost:5000/products', {
+        fetch('https://enigmatic-shore-70440.herokuapp.com/products', {
             method: 'POST',
             headers: {'content-type':'application/json'},
             body: JSON.stringify(addProduct),

@@ -14,7 +14,7 @@ const Purchase = () => {
     const {name, price, description, img} = product;
 
     useEffect( ()=> {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://enigmatic-shore-70440.herokuapp.com/products/${id}`)
         .then(res => res.json())
         .then(data => setProduct(data))
     }, [id])
@@ -40,7 +40,7 @@ const Purchase = () => {
             img,
         };
         // send to database
-        fetch('http://localhost:5000/orders', {
+        fetch('https://enigmatic-shore-70440.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type':'application/json'
