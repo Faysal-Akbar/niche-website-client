@@ -12,7 +12,7 @@ const Header = () => {
     const {user, logout} = useAuth();
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed">
+            <AppBar sx={{ bgcolor: "#2C302C" }} position="fixed">
                 <Toolbar sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                 <Box sx={{display: 'flex', alignItems: 'center', ml: 7}}>
                 <img width="50px" src={logo} alt="" />
@@ -27,7 +27,7 @@ const Header = () => {
                         <NavLink style={{textDecoration: 'none', color: 'white', fontWeight: 600}} to="/dashboard">
                             Dashboard
                         </NavLink>
-                        <Button onClick={logout} style={{backgroundColor: '#D10750', marginLeft: '10px'}} variant="contained">Log Out</Button> 
+                        <Button onClick={logout} style={{backgroundColor: '#D10750', marginLeft: '10px'}} variant="contained"> <i className="fas fa-sign-out-alt mr-3"></i> Log Out</Button> 
                     </Box>
                     :
                         <NavLink style={{textDecoration: 'none', color: 'white', fontWeight: 600}} to="/login">

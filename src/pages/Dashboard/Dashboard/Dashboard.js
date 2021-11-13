@@ -24,8 +24,9 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddProduct from '../AddProduct/AddProduct';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import ManageOrders from '../ManageOrders/ManageOrders';
+import AdminRoute from '../../../Login/AdminRoute/AdminRoute';
 
-const drawerWidth = 190;
+const drawerWidth = 225;
 
 function Dashboard(props) {
   const {logout, admin} = useAuth();
@@ -43,22 +44,26 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
 
-      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to="/home"><Button variant="inherit">Home</Button></NavLink>
-      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}`}><Button variant="inherit">Dashboard</Button></NavLink>
-      {!admin && <Box>
-        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/payment`}><Button variant="inherit">Payment</Button></NavLink>
-        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/myOrders`}><Button variant="inherit">My Orders</Button></NavLink>
-        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/review`}><Button variant="inherit">Review</Button></NavLink> <br />
+      <Box sx={{textAlign: 'left', ml: 3}}>
+      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to="/home"><i className="fas fa-home"></i><Button variant="inherit">Home</Button></NavLink> <br />
+      <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}`}><i className="fas fa-columns"></i><Button variant="inherit">Dashboard</Button></NavLink>
+      </Box>
+      <Divider/>
+      {!admin && <Box sx={{textAlign: 'left', ml: 3}}>
+        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/payment`}><i className="fab fa-cc-mastercard"></i><Button variant="inherit">Payment</Button></NavLink> <br />
+        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/myOrders`}><i className="fab fa-first-order-alt"></i><Button variant="inherit">My Orders</Button></NavLink> <br />
+        <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/review`}><i className="fas fa-comments"></i><Button variant="inherit">Review</Button></NavLink> <br />
         </Box>}
 
-      {admin && <Box>
-            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/makeAdmin`}><Button variant="inherit">Make Admin</Button></NavLink> <br />
-            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/addProduct`}><Button variant="inherit">Add Product</Button></NavLink> <br />
-            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/manageProducts`}><Button variant="inherit">Manage Products</Button></NavLink> <br />
-            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/manageAllOrders`}><Button variant="inherit">Manage All Orders</Button></NavLink> <br />
+      {admin && <Box sx={{textAlign: 'left', ml: 3}}>
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/makeAdmin`}><i className="fas fa-user-shield"></i><Button variant="inherit">Make Admin</Button></NavLink> <br />
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/addProduct`}><i className="far fa-plus-square"></i><Button variant="inherit">Add Product</Button></NavLink> <br />
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/manageProducts`}><i className="fas fa-tasks"></i><Button variant="inherit">Manage Products</Button></NavLink> <br />
+            <NavLink style={{textDecoration: 'none', fontWeight: 600}} to={`${url}/manageAllOrders`}><i className="fab fa-product-hunt"></i><Button variant="inherit">Manage All Orders</Button></NavLink> <br />
         </Box>}
+        <Divider/>
 
-      <Button onClick={logout} style={{backgroundColor: '#D10750'}} variant="contained">Log Out</Button>
+      <Button onClick={logout} style={{backgroundColor: '#D10750', marginTop: '10px'}} variant="contained"><i className="fas fa-sign-out-alt mr-3"></i> Log Out</Button>
        
     </div>
   );
@@ -71,6 +76,7 @@ function Dashboard(props) {
       <AppBar
         position="fixed"
         sx={{
+          bgcolor: "#2C302C",
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
@@ -86,7 +92,8 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Dashboard
+          <i className="fas fa-columns"></i>
+           <span> Dashboard </span>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -140,18 +147,18 @@ function Dashboard(props) {
         <Route path={`${path}/review`}>
             <Review></Review>  
         </Route>
-        <Route path={`${path}/makeAdmin`}>
+        <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin></MakeAdmin>  
-        </Route>
-        <Route path={`${path}/addProduct`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/addProduct`}>
             <AddProduct></AddProduct>  
-        </Route>
-        <Route path={`${path}/manageProducts`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/manageProducts`}>
             <ManageProducts></ManageProducts>  
-        </Route>
-        <Route path={`${path}/manageAllOrders`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/manageAllOrders`}>
             <ManageOrders></ManageOrders>  
-        </Route>
+        </AdminRoute>
       </Switch>
         
       </Box>

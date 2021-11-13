@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardMedia, Container, Grid, TextField, Typography } from '@mui/material';
+import { Alert, Button, Card, CardContent, CardMedia, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
@@ -10,6 +10,7 @@ const Purchase = () => {
     const {user} = useAuth();
     const [product, setProduct] = useState({});
     const [userInfo, setUserInfo] = useState({});
+    const [success, setSuccess] = useState(false);
     const {name, price, description, img} = product;
 
     useEffect( ()=> {
@@ -49,7 +50,7 @@ const Purchase = () => {
         .then(res => res.json())
         .then(data => {
             if(data.insertedId){
-                alert("Order Successful");
+                setSuccess(true);
             }
         })
         e.preventDefault();
@@ -113,6 +114,7 @@ const Purchase = () => {
                     variant="standard" /> <br /> <br />
                     <Button type="submit" style={{backgroundColor:'#D10750', textAlign: 'left'}} variant="contained">Purchase Now</Button>
                 </form>
+                {success && <Alert sx={{mt: 5}} severity="success">ORDER SUCCESSFUL</Alert>}
             </Grid>
         </Grid>
         </Container>

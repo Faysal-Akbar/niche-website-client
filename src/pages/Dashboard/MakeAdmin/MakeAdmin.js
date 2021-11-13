@@ -1,8 +1,10 @@
-import { Alert, Button, Container, Grid, TextField } from '@mui/material';
+import { Alert, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import useAuth from '../../../Hooks/useAuth';
 import admin from '../../../images/admin/admin.jpg';
 
 const MakeAdmin = () => {
+    const {token} = useAuth();
     const [success, setSuccess] = useState(false);
     const [email, setEmail] = useState('');
 
@@ -15,6 +17,7 @@ const MakeAdmin = () => {
         fetch('http://localhost:5000/users', {
             method: 'PUT',
             headers: {
+                'authorization':`Bearer ${token}`,
                 'content-type':'application/json'
             },
             body: JSON.stringify(user),
@@ -34,6 +37,9 @@ const MakeAdmin = () => {
                     <img width="100%" src={admin} alt="" />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} sx={{mt: 15}}>
+                    <Typography variant="h5">
+                        Enter Email Address :
+                    </Typography>
                 <form onSubmit={handleAdminSubmit}>
                     <TextField
                     sx={{width: '60%'}}

@@ -7,11 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 
 const MyOrders = () => {
     const {user} = useAuth();
     const [orders, setOrders] = useState([]);
+    const [success, setSuccess] = useState(false);
 
     useEffect(()=> {
         fetch(`http://localhost:5000/orders/${user.email}`)
@@ -28,7 +29,7 @@ const MyOrders = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.deletedCount){
-                    alert("Order Delete Successfully");
+                    setSuccess(true);
                     const remaining = orders.filter(order => order._id !== id);
                     setOrders(remaining);
                 }
@@ -36,6 +37,8 @@ const MyOrders = () => {
         }
     }
     return (
+        <>
+        {success && <Alert sx={{my: 2}} severity="success">ORDER DELETED SUCCESSFULLY</Alert>}
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -69,6 +72,7 @@ const MyOrders = () => {
                 </TableBody>
             </Table>
         </TableContainer>
+        </>
     );
 };
 

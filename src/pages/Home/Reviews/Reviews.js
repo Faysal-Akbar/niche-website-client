@@ -1,5 +1,7 @@
 import { Container, Grid, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import Rating from 'react-rating';
+import './Reviews.css';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
@@ -8,7 +10,8 @@ const Reviews = () => {
         fetch('http://localhost:5000/review')
         .then(res => res.json())
         .then(data => setReviews(data))
-    }, [])
+    }, []);
+
     return (
         <Container sx={{mb: 10}}>
             <Typography sx={{fontWeight: 600, color: '#D10750'}} variant="h6">
@@ -29,8 +32,13 @@ const Reviews = () => {
                         <Typography variant="h6" sx={{fontSize: 14, my: 2, color: 'text.disabled'}}>
                             {review.review}
                         </Typography>
-                        <Typography variant="h6">
-                            Ratings: {review.rating}
+                        <Typography variant="h6" sx={{fontSize: 16}}>
+                            Ratings: {review.rating} <br /> 
+                            <Rating 
+                             initialRating={review.rating}
+                             emptySymbol="far fa-star icon"
+                             fullSymbol="fas fa-star icon"
+                             readonly></Rating>
                         </Typography>
                     </Paper>
                     </Grid>)
