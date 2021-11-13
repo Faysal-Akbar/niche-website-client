@@ -8,7 +8,7 @@ const Footer = () => {
         <Box sx={{ flexGrow: 1, backgroundColor: 'lightGray'}}>
             <Grid container spacing={2}>
                 <Container sx={{display: 'flex', justifyContent: 'space-between', mt: 5}}>
-                <Grid item xs={6} sm={6} md={5} sx={{textAlign: 'left'}}>                   
+                <Grid item xs={12} sm={6} md={5} sx={{textAlign: 'left'}}>                   
                     <Typography variant="h4" sx={{fontWeight: 600, mb: 3}}>
                         Hero <span style={{color:'#D10750'}}>Runner</span>
                     </Typography>
@@ -24,7 +24,7 @@ const Footer = () => {
                     </Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={6} sm={6} md={2} sx={{textAlign: 'left'}}>
+                <Grid item xs={12} sm={6} md={2} sx={{textAlign: 'left'}}>
                     <Typography variant="h6" sx={{fontWeight: 600, textAlign: 'center'}}>
                     PAGES
                     </Typography>
@@ -43,7 +43,7 @@ const Footer = () => {
                         </Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={6} sm={6} md={2} sx={{textAlign: 'left'}}>
+                <Grid item xs={12} sm={6} md={2} sx={{textAlign: 'left'}}>
                     <Typography variant="h6" sx={{fontWeight: 600, textAlign: 'center'}}>
                         MY ACCOUNT
                     </Typography>
@@ -62,7 +62,7 @@ const Footer = () => {
                         </Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={6} sm={6} md={3} sx={{textAlign: 'left'}}>
+                <Grid item xs={12} sm={6} md={3} sx={{textAlign: 'left'}}>
                 <Typography variant="h5" sx={{fontWeight: 600, mb: 3, textAlign: 'center'}}>
                     NEWSLETTER
                 </Typography>

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const Product = ({product}) => {
     const {_id, name, price, description, img} = product;
     return (
-        <Grid item xs={4} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
             <Card>
                 <CardMedia
                     component="img"
